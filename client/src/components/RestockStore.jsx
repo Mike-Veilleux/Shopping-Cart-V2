@@ -9,6 +9,7 @@ const RestockStore = ({ url, setUrl, restockProducts, fetchError }) => {
     <div className="d-flex-col justify-content-end " style={{ width: "100%" }}>
       <div className="d-flex input-group mb-2 mt-3" style={{ width: "50%" }}>
         <button
+          disabled={false}
           className="btn btn-success"
           type="button"
           id="button-addon2"
@@ -17,6 +18,7 @@ const RestockStore = ({ url, setUrl, restockProducts, fetchError }) => {
           Restock
         </button>
         <input
+          disabled={true}
           type="text"
           className="form-control"
           placeholder="Enter database URL..."

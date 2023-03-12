@@ -26,11 +26,15 @@ const Checkout = ({ cartItems }) => {
         CHECKOUT
       </h3>
       <div>{renderSubTotal}</div>
-      <hr />
-      <div className="row">
-        <h3 className="col text-start">{`Total: `}</h3>
-        <h3 className="col text-end">{total}$</h3>
-      </div>
+      {cartItems.length ? (
+        <>
+          <hr />
+          <div className="row">
+            <h3 className="col text-start">{`Total: `}</h3>
+            <h3 className="col text-end">{total}$</h3>
+          </div>
+        </>
+      ) : null}
     </>
   );
 };

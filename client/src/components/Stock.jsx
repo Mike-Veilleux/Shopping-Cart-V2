@@ -8,11 +8,7 @@ const Stock = ({ stockItems, addToCart }) => {
         className="card my-2 mx-2 shadow"
         style={{ width: "12rem" }}
       >
-        <img
-          src={`https://picsum.photos/${index + 1049}`}
-          className="card-img-top"
-          alt="..."
-        />
+        <img src={`${product.name}.png`} className="card-img-top" alt="..." />
         <div className="card-body">
           <h5 className="card-title">{product.name}</h5>
           <div className="col"> {`Cost: ${product.cost}$`}</div>

@@ -5,17 +5,17 @@ const useDataStore = () => {
     //----------------------------------------------------------------
     //                     Offline data source
     //----------------------------------------------------------------
-    // const products = [
-    //     { name: "Apples", country: "Italy", cost: 3, instock: 10 },
-    //     { name: "Oranges", country: "Spain", cost: 4, instock: 3 },
-    //     { name: "Beans", country: "USA", cost: 2, instock: 5 },
-    //     { name: "Cabbages", country: "USA", cost: 1, instock: 8 },
-    // ];
+    const products = [
+        { name: "Apples", country: "Italy", cost: 3, instock: 10 },
+        { name: "Oranges", country: "Spain", cost: 4, instock: 3 },
+        { name: "Beans", country: "USA", cost: 2, instock: 5 },
+        { name: "Cabbages", country: "USA", cost: 1, instock: 8 },
+    ];
 
     const [cartItems, setCartItems] = useState([]);
-    const [stockItems, setStockItems] = useState([]);
+    const [stockItems, setStockItems] = useState(products);
     const [fetchError, setFetchError] = useState("");
-    const [url, setUrl] = useState(`http://localhost:1337/api/products`);
+    const [url, setUrl] = useState(`Strapi Database Unavailable...`); //http://localhost:1337/api/products
 
     const addToCart = (index) => {
         //--------------------------------------
@@ -95,42 +95,43 @@ const useDataStore = () => {
     };
 
     const restockProducts = async () => {
-        try {
-            const result = await axios(url);
-            const newArr = [];
-            result.data.data.forEach(item => {
-                newArr.push(item.attributes)
-            })
-            setStockItems(newArr)
-            setFetchError("")
+        setStockItems(products)
+        // try {
+        //     const result = await axios(url);
+        //     const newArr = [];
+        //     result.data.data.forEach(item => {
+        //         newArr.push(item.attributes)
+        //     })
+        //     setStockItems(newArr)
+        //     setFetchError("")
 
-        } catch (error) {
-            setFetchError('Error code 404 - invalid URL.')
-        }
+        // } catch (error) {
+        //     setFetchError('Error code 404 - invalid URL.')
+        // }
     }
 
-    useEffect(() => {
-        let didCancel = false;
-        const getProducts = async () => {
-            try {
-                const result = await axios(url);
-                if (!didCancel) {
-                    console.log('Fetching Product from UseEffect...')
-                    const newArr = [];
-                    result.data.data.forEach(item => {
-                        newArr.push(item.attributes)
-                    })
-                    setStockItems(newArr)
-                }
-            } catch (error) {
-                setFetchError('Invalid URL')
-            }
-        }
-        getProducts();
-        return () => {
-            didCancel = true;
-        };
-    }, []);
+    // useEffect(() => {
+    //     let didCancel = false;
+    //     const getProducts = async () => {
+    //         try {
+    //             const result = await axios(url);
+    //             if (!didCancel) {
+    //                 console.log('Fetching Product from UseEffect...')
+    //                 const newArr = [];
+    //                 result.data.data.forEach(item => {
+    //                     newArr.push(item.attributes)
+    //                 })
+    //                 setStockItems(newArr)
+    //             }
+    //         } catch (error) {
+    //             setFetchError('Invalid URL')
+    //         }
+    //     }
+    //     getProducts();
+    //     return () => {
+    //         didCancel = true;
+    //     };
+    // }, []);
 
 
     return {
